@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SkyView.swift
 //  FlyingPlane
 //
 //  Created by Margarita Slesareva on 15.06.2023.
@@ -12,11 +12,12 @@ private enum Metrics {
     static let minimumVerticalSpacing: CGFloat = 8
     static let horizontalSpacing: CGFloat = 8
     static let planeHeight: CGFloat = 80
-    static let buttonHeight: CGFloat = 50
+    static let buttonHeight: CGFloat = 30
+    static let step: CGFloat = 10
 }
 
 final class SkyView: UIView {
-    private let planeView = UIImageView()
+    private let planeImageView = UIImageView()
     private let leftButton = UIButton()
     private let rightButton = UIButton()
     
@@ -37,7 +38,7 @@ final class SkyView: UIView {
     }
     
     private func addSubviews() {
-        [planeView, leftButton, rightButton].forEach {
+        [planeImageView, leftButton, rightButton].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -45,10 +46,13 @@ final class SkyView: UIView {
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            planeView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            planeView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.verticalSpacing),
-            planeView.heightAnchor.constraint(equalTo: planeView.widthAnchor),
-            planeView.heightAnchor.constraint(equalToConstant: Metrics.planeHeight),
+            planeImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            planeImageView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -(Metrics.verticalSpacing + Metrics.buttonHeight)
+            ),
+            planeImageView.heightAnchor.constraint(equalTo: planeImageView.widthAnchor),
+            planeImageView.heightAnchor.constraint(equalToConstant: Metrics.planeHeight),
             
             leftButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.horizontalSpacing),
             leftButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Metrics.verticalSpacing),
@@ -63,16 +67,62 @@ final class SkyView: UIView {
     }
     
     private func configureViews() {
-        planeView.image = UIImage(systemName: "arrow.up")
-        planeView.backgroundColor = .clear
-        planeView.tintColor = .systemGray
+        planeImageView.image = UIImage(systemName: "arrow.up")
+        planeImageView.backgroundColor = .clear
+        planeImageView.tintColor = .systemYellow
         
         leftButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
         leftButton.backgroundColor = .clear
         leftButton.tintColor = .black
+        leftButton.addTarget(self, action: #selector(`left`), for: .touchUpInside)
         
         rightButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         rightButton.backgroundColor = .clear
         rightButton.tintColor = .black
+        rightButton.addTarget(self, action: #selector(`right`), for: .touchUpInside)
+    }
+    
+    @objc private func right() {
+        let nextFrame = planeImageView.frame.offsetBy(dx: Metrics.step, dy: 0)
+        
+        if buttonsIntersects(with: nextFrame) {
+            return
+        }
+                
+        if nextFrame.maxX > frame.width {
+            return
+        }
+        
+        animatedStep(nextFrame: nextFrame)
+    }
+    
+    @objc private func left() {
+        let nextFrame = planeImageView.frame.offsetBy(dx: -Metrics.step, dy: 0)
+        
+        if buttonsIntersects(with: nextFrame) {
+            return
+        }
+        
+        if nextFrame.minX < 0 {
+            return
+        }
+        
+       animatedStep(nextFrame: nextFrame)
+    }
+    
+    private func buttonsIntersects(with frame: CGRect) -> Bool {
+        for button in [leftButton, rightButton] {
+            if frame.intersects(button.frame) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    private func animatedStep(nextFrame: CGRect) {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut]) {
+            self.planeImageView.frame = nextFrame
+        }
     }
 }
