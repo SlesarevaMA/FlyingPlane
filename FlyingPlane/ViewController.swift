@@ -7,13 +7,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    
+    private let leftRockImageView = UIImageView()
+    private let rightRockImageView = UIImageView()
+    private let skyView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        configure()
+    }
+    
+    private func configure() {
+        
     }
 
-
+    private func addViews() {
+        
+    }
 }
-
