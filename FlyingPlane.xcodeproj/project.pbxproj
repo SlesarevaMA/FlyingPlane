@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6C70442A3B7682002CA4B4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C70432A3B7682002CA4B4 /* File.swift */; };
 		ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */; };
 		ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96E2A3B253F00CA4BE1 /* SceneDelegate.swift */; };
 		ABA3A9712A3B253F00CA4BE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A9702A3B253F00CA4BE1 /* ViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB6C70432A3B7682002CA4B4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ABA3A9692A3B253F00CA4BE1 /* FlyingPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABA3A96E2A3B253F00CA4BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				ABA3A9702A3B253F00CA4BE1 /* ViewController.swift */,
 				ABA3A9802A3B268100CA4BE1 /* Supporting Files */,
+				AB6C70432A3B7682002CA4B4 /* File.swift */,
 			);
 			path = FlyingPlane;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA3A9712A3B253F00CA4BE1 /* ViewController.swift in Sources */,
+				AB6C70442A3B7682002CA4B4 /* File.swift in Sources */,
 				ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */,
 				ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */,
 			);
