@@ -24,6 +24,7 @@ final class ViewController: UIViewController {
     private let backgroundImageView = UIImageView()
     private let copieBackgroundImageView = UIImageView()
     private let planeImageView = UIImageView()
+    private let barrierImageView = UIImageView()
     
     private var backgroundPhase: Phase = .second
     private var planePhase: Phase = .first
@@ -39,13 +40,14 @@ final class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animate()
-        addBarrier()
+        addBarrierAnimate()
     }
         
     private func addViews() {
         view.addSubview(backgroundImageView)
         view.addSubview(copieBackgroundImageView)
         view.addSubview(planeImageView)
+        view.addSubview(barrierImageView)
     }
     
     private func configureViews() {
@@ -80,6 +82,14 @@ final class ViewController: UIViewController {
         )
         planeImageView.image = UIImage(named: Metrics.Image.plane)
         planeImageView.contentMode = .scaleToFill
+        
+        barrierImageView.image = UIImage(named: Metrics.Image.stone)
+        barrierImageView.frame = CGRect(
+            x: CGFloat.random(in: view.frame.width * 0.25 ..< view.frame.width * 0.75),
+            y: 0,
+            width: Metrics.barrierSide,
+            height: Metrics.barrierSide
+        )
     }
     
     private func animate() {
@@ -124,12 +134,18 @@ final class ViewController: UIViewController {
         
         animatedStep(nextFrame: nextFrame)
 
-        if nextFrame.maxX > view.frame.width * 0.9 {
-            UIView.animate(withDuration: 3, animations: {
-                self.planeImageView.image = UIImage(named: Metrics.Image.bang)
-//                self.planeImageView.image = UIImage(named: "Plane")
-            })
+        if nextFrame.maxX > view.frame.width * 0.85 {
+            UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations: {
+                self.updatePlanePhase()
+            }) {_ in
+                self.planePhase = self.planePhase.next()
+                self.updatePlanePhase()
+            }
         }
+        
+//        if ((barrierImageView.layer.presentation()?.frame.intersects(planeImageView.frame)) != nil) {
+//            planeImageView.image = UIImage(named: Metrics.Image.bang)
+//        }
     }
     
     private func left() {
@@ -137,51 +153,42 @@ final class ViewController: UIViewController {
         
         animatedStep(nextFrame: nextFrame)
 
-        if nextFrame.minX < view.frame.width * 0.1 {
+        if nextFrame.minX < view.frame.width * 0.15 {
             UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
                 self.updatePlanePhase()
             }) {_ in
                 self.planePhase = self.planePhase.next()
+                self.updatePlanePhase()
             }
         }
         
 //        if ((barrierImageView.layer.presentation()?.frame.intersects(planeImageView.layer.presentation()!.frame)) != nil) {
 //            planeImageView.image = UIImage(named: Metrics.Image.bang)
 //        }
-
     }
     
     private func updatePlanePhase() {
         switch planePhase {
         case .first:
             planeImageView.image = UIImage(named: Metrics.Image.plane)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self.planePhase = self.planePhase.next()
-//            }
         case .second:
             planeImageView.image = UIImage(named: Metrics.Image.bang)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self.planePhase = self.planePhase.next()
-//            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.planePhase = self.planePhase.next()
+                self.updatePlanePhase()
+            }
         case .third:
             view.isUserInteractionEnabled = false
             self.planeImageView.isHidden = true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self.planePhase = self.planePhase.next()
-//            }
-//            UIView.animate(withDuration: 0.5) {
-//            }
+            planeImageView.frame.origin.x = (view.frame.width - Metrics.planeHeight) / 2
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.planePhase = self.planePhase.next()
+                self.updatePlanePhase()
+            }
         case .fourth:
+            self.planeImageView.isHidden = false
             view.isUserInteractionEnabled = true
             self.planeImageView.image = UIImage(named: Metrics.Image.plane)
-            self.planeImageView.isHidden = false
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self.planePhase = self.planePhase.next()
-//            }
-
-//            UIView.animate(withDuration: 0.5) {
-//
-//            }
         }
     }
     
@@ -191,22 +198,9 @@ final class ViewController: UIViewController {
         }
     }
     
-    private func addBarrier() {
-        let barrierImageView = UIImageView()
-        barrierImageView.image = UIImage(named: Metrics.Image.stone)
-        
-        barrierImageView.frame = CGRect(
-            x: CGFloat.random(in: view.frame.width * 0.2 ..< view.frame.width * 0.8),
-            y: 0,
-            width: Metrics.barrierSide,
-            height: Metrics.barrierSide
-        )
-        
-        
+    private func addBarrierAnimate() {
         UIView.animate(withDuration: 2,  delay: 0, options: [.repeat, .curveLinear]) {
-            barrierImageView.frame.origin.y = self.view.frame.height
+            self.barrierImageView.frame.origin.y = self.view.frame.height
         }
-        
-        view.addSubview(barrierImageView)
     }
 }
