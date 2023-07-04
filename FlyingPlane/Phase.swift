@@ -12,6 +12,12 @@ enum Phase: CaseIterable {
     case fourth
 }
 
+enum PlanePhase: CaseIterable{
+    case first
+    case second
+    case third
+}
+
 extension CaseIterable where Self: Equatable {
     func next() -> Self {
         let allCasese = Self.allCases

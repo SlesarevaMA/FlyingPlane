@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 private enum Metrics {
     static let planeHeight: CGFloat = 120
@@ -25,13 +26,17 @@ final class ViewController: UIViewController {
     private let copieBackgroundImageView = UIImageView()
     private let planeImageView = UIImageView()
     private let barrierImageView = UIImageView()
+    private let imageView = UIImageView()
+    private let someView = UIView()
     
     private var backgroundPhase: Phase = .second
-    private var planePhase: Phase = .first
+    private var planePhase: PlanePhase = .first
+    
+    private var displayLink: CADisplayLink?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         addViews()
         configureViews()
     }
@@ -40,7 +45,29 @@ final class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animate()
-        addBarrierAnimate()
+        addBarrierAnimation()
+        
+        displayLink = CADisplayLink(target: self, selector: #selector(tick))
+        displayLink?.add(to: .main, forMode: .default)
+    }
+    
+    @objc private func tick() {
+        guard
+            let barierPresentationLayer = barrierImageView.layer.presentation(),
+            let planePresentationLayer = planeImageView.layer.presentation(),
+            planePhase == .first
+        else {
+            return
+        }
+        
+        if barierPresentationLayer.frame.intersects(planePresentationLayer.frame) {
+            UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
+                self.updatePlanePhase()
+            }) {_ in
+                self.planePhase = self.planePhase.next()
+                self.updatePlanePhase()
+            }
+        }
     }
         
     private func addViews() {
@@ -48,6 +75,7 @@ final class ViewController: UIViewController {
         view.addSubview(copieBackgroundImageView)
         view.addSubview(planeImageView)
         view.addSubview(barrierImageView)
+        view.addSubview(imageView)
     }
     
     private func configureViews() {
@@ -142,10 +170,6 @@ final class ViewController: UIViewController {
                 self.updatePlanePhase()
             }
         }
-        
-//        if ((barrierImageView.layer.presentation()?.frame.intersects(planeImageView.frame)) != nil) {
-//            planeImageView.image = UIImage(named: Metrics.Image.bang)
-//        }
     }
     
     private func left() {
@@ -161,16 +185,14 @@ final class ViewController: UIViewController {
                 self.updatePlanePhase()
             }
         }
-        
-//        if ((barrierImageView.layer.presentation()?.frame.intersects(planeImageView.layer.presentation()!.frame)) != nil) {
-//            planeImageView.image = UIImage(named: Metrics.Image.bang)
-//        }
     }
     
     private func updatePlanePhase() {
         switch planePhase {
         case .first:
-            planeImageView.image = UIImage(named: Metrics.Image.plane)
+            self.planeImageView.isHidden = false
+            view.isUserInteractionEnabled = true
+            self.planeImageView.image = UIImage(named: Metrics.Image.plane)
         case .second:
             planeImageView.image = UIImage(named: Metrics.Image.bang)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -185,10 +207,6 @@ final class ViewController: UIViewController {
                 self.planePhase = self.planePhase.next()
                 self.updatePlanePhase()
             }
-        case .fourth:
-            self.planeImageView.isHidden = false
-            view.isUserInteractionEnabled = true
-            self.planeImageView.image = UIImage(named: Metrics.Image.plane)
         }
     }
     
@@ -198,7 +216,7 @@ final class ViewController: UIViewController {
         }
     }
     
-    private func addBarrierAnimate() {
+    private func addBarrierAnimation() {
         UIView.animate(withDuration: 2,  delay: 0, options: [.repeat, .curveLinear]) {
             self.barrierImageView.frame.origin.y = self.view.frame.height
         }

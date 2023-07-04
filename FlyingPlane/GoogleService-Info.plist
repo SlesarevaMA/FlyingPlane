@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>190985862886-8mk162vsj862rn4g9k9tk520epeeo6pd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.190985862886-8mk162vsj862rn4g9k9tk520epeeo6pd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBDu0RklsI-fpLwpAgvz6ll9htzv5D00EI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>190985862886</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ritulya.FlyingPlane</string>
+	<key>PROJECT_ID</key>
+	<string>flyingplane-df510</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flyingplane-df510.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:190985862886:ios:c7bdb352c9234eea7a4527</string>
+</dict>
+</plist>

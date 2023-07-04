@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB4432F02A43201100C42E54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */; };
 		AB98829B2A3E591500D9D889 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98829A2A3E591500D9D889 /* Phase.swift */; };
 		ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */; };
 		ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96E2A3B253F00CA4BE1 /* SceneDelegate.swift */; };
 		ABA3A9712A3B253F00CA4BE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A9702A3B253F00CA4BE1 /* ViewController.swift */; };
 		ABA3A9762A3B254000CA4BE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A9752A3B254000CA4BE1 /* Assets.xcassets */; };
 		ABA3A9792A3B254000CA4BE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A9772A3B254000CA4BE1 /* LaunchScreen.storyboard */; };
+		C9B64E996721BB0362BE7F15 /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.release.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.release.xcconfig"; sourceTree = "<group>"; };
+		AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB98829A2A3E591500D9D889 /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 		ABA3A9692A3B253F00CA4BE1 /* FlyingPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		ABA3A9752A3B254000CA4BE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABA3A9782A3B254000CA4BE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABA3A97A2A3B254000CA4BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyingPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.debug.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B64E996721BB0362BE7F15 /* Pods_FlyingPlane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				ABA3A96B2A3B253F00CA4BE1 /* FlyingPlane */,
 				ABA3A96A2A3B253F00CA4BE1 /* Products */,
+				C112B5B6C9116FA7489AD5E3 /* Pods */,
+				BD649346F1F81896EE3DB37E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +65,7 @@
 		ABA3A96B2A3B253F00CA4BE1 /* FlyingPlane */ = {
 			isa = PBXGroup;
 			children = (
+				AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */,
 				AB98829A2A3E591500D9D889 /* Phase.swift */,
 				ABA3A9702A3B253F00CA4BE1 /* ViewController.swift */,
 				ABA3A9802A3B268100CA4BE1 /* Supporting Files */,
@@ -75,6 +85,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BD649346F1F81896EE3DB37E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C112B5B6C9116FA7489AD5E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */,
+				0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABA3A97D2A3B254000CA4BE1 /* Build configuration list for PBXNativeTarget "FlyingPlane" */;
 			buildPhases = (
+				27861D334B954F16AEA40133 /* [CP] Check Pods Manifest.lock */,
 				ABA3A9652A3B253F00CA4BE1 /* Sources */,
 				ABA3A9662A3B253F00CA4BE1 /* Frameworks */,
 				ABA3A9672A3B253F00CA4BE1 /* Resources */,
+				40B39522BA68B0C3A2CF7877 /* [CP] Embed Pods Frameworks */,
+				AB4432F32A43266800C42E54 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -135,10 +165,72 @@
 			files = (
 				ABA3A9792A3B254000CA4BE1 /* LaunchScreen.storyboard in Resources */,
 				ABA3A9762A3B254000CA4BE1 /* Assets.xcassets in Resources */,
+				AB4432F02A43201100C42E54 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27861D334B954F16AEA40133 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlyingPlane-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40B39522BA68B0C3A2CF7877 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB4432F32A43266800C42E54 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ABA3A9652A3B253F00CA4BE1 /* Sources */ = {
@@ -199,7 +291,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -282,17 +374,21 @@
 		};
 		ABA3A97E2A3B254000CA4BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FlyingPlane/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,23 +401,27 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		ABA3A97F2A3B254000CA4BE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FlyingPlane/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,7 +434,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
