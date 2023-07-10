@@ -24,8 +24,11 @@ final class SettingsViewController: UIViewController {
     private let planeSegmentControl = UISegmentedControl()
     private let speedSegmentControl = UISegmentedControl()
     private let nameTextView = UITextView()
+    private let imagePicker = UIImagePickerController()
     
     private let dataSource: DataSource
+    
+    private var isFirstLaunch = true
     
     init(dataSource: DataSource) {
         self.dataSource = dataSource
@@ -46,9 +49,9 @@ final class SettingsViewController: UIViewController {
     }
     
     private func addViews() {
-        [personImageView, planeLabel, planeSegmentControl, speedLabel,
-         speedSegmentControl, nameLabel, nameTextView
-        ].forEach {
+        [personImageView, planeLabel, planeSegmentControl, speedLabel, speedSegmentControl, nameLabel, nameTextView]
+            .forEach
+        {
             view.addSubview($0)
         }
     }
@@ -58,6 +61,7 @@ final class SettingsViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Metrics.horizontalSpacing)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metrics.verticalSpacing)
             $0.trailing.equalToSuperview().inset(Metrics.verticalSpacing)
+            $0.height.equalTo(personImageView.snp.width)
         }
         
         nameLabel.snp.makeConstraints {
@@ -99,8 +103,12 @@ final class SettingsViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        personImageView.image = UIImage(named: "Stone")
-        
+        personImageView.image = dataSource.loadImage()
+        personImageView.contentMode = .scaleAspectFit
+        personImageView.clipsToBounds = true
+        personImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOnImageView)))
+        personImageView.isUserInteractionEnabled = true
+
         planeLabel.text = "Plane"
         speedLabel.text = "Speed"
         nameLabel.text = "Name"
@@ -143,6 +151,71 @@ final class SettingsViewController: UIViewController {
             dataSource.setSpeed(.high)
         default:
             break
+        }
+    }
+    
+    @objc func tappedOnImageView(_ sender: UITapGestureRecognizer) {
+        showGalleryAlert()
+    }
+    
+    private func showGalleryAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let galleryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { _ in
+            self.openFromGallery()
+        }
+
+        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
+            self.openCamera()
+        }
+                
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(galleryAction)
+        alert.addAction(cameraAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func openFromGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    private func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(
+                title: "Ошибка",
+                message: "У Вас нет камеры",
+                preferredStyle: .alert
+            )
+            
+            let action = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(action)
+            
+            present(alertController, animated: true)
+        }
+    }
+}
+
+extension SettingsViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[.originalImage] as? UIImage {
+            dataSource.saveImage(image: image)
         }
     }
 }
