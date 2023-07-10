@@ -17,6 +17,9 @@
 		ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03D92A543F8E003768D4 /* MainViewController.swift */; };
 		ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */; };
 		ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */; };
+		ABE57FF22A5C149A00245871 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF12A5C149A00245871 /* RecordsViewController.swift */; };
+		ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */; };
+		ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF62A5C17CE00245871 /* Identifiable.swift */; };
 		C9B64E996721BB0362BE7F15 /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,9 @@
 		ABBA03D92A543F8E003768D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		ABE57FF12A5C149A00245871 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
+		ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		ABE57FF62A5C17CE00245871 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyingPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.debug.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +83,9 @@
 				ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */,
 				ABA3A9702A3B253F00CA4BE1 /* GameViewController.swift */,
 				ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */,
+				ABE57FF12A5C149A00245871 /* RecordsViewController.swift */,
+				ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */,
+				ABE57FF52A5C17AD00245871 /* Helpers */,
 				ABA3A9802A3B268100CA4BE1 /* Supporting Files */,
 			);
 			path = FlyingPlane;
@@ -92,6 +101,14 @@
 				ABA3A97A2A3B254000CA4BE1 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABE57FF52A5C17AD00245871 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ABE57FF62A5C17CE00245871 /* Identifiable.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		BD649346F1F81896EE3DB37E /* Frameworks */ = {
@@ -248,11 +265,14 @@
 			files = (
 				ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */,
 				ABA3A9712A3B253F00CA4BE1 /* GameViewController.swift in Sources */,
+				ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */,
+				ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */,
 				ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */,
 				ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */,
 				AB98829B2A3E591500D9D889 /* Phase.swift in Sources */,
 				ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */,
 				ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */,
+				ABE57FF22A5C149A00245871 /* RecordsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

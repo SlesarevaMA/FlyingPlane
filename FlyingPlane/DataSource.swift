@@ -24,10 +24,13 @@ protocol DataSource {
     func setPlane(_ plane: Plane)
     func getSpeed() -> Speed?
     func getPlane() -> Plane?
+    func addRecord(record: Int)
+    func getRecords() -> [Int]
 }
 
 final class DataSourceImpl: DataSource {
     private let stateStorage = UserDefaults.standard
+    private var records = [Int]()
     
     func setSpeed(_ speed: Speed) {
         let str = String(describing: Speed.self)
@@ -57,5 +60,13 @@ final class DataSourceImpl: DataSource {
         }
                             
         return Plane(rawValue: value)
+    }
+    
+    func addRecord(record: Int) {
+        records.append(record)
+    }
+    
+    func getRecords() -> [Int] {
+        return records
     }
 }

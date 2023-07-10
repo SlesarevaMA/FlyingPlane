@@ -86,6 +86,7 @@ final class MainViewController: UIViewController {
     }
 
     @objc private func recordsButtonTapped() {
-        
+        let recordsViewController = RecordsViewController(dataSource: dataSource)
+        navigationController?.pushViewController(recordsViewController, animated: true)
     }
 }

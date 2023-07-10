@@ -14,7 +14,6 @@ private enum Metrics {
     static let barrierSide: CGFloat = 50
     
     enum Image {
-//        static let plane = "Plane"
         static let bang = "Bang"
         static let background = "Background"
         static let stone = "Stone"
@@ -29,6 +28,7 @@ final class GameViewController: UIViewController {
     private let imageView = UIImageView()
     private let someView = UIView()
     
+    private var barrierCount = 0
     private var backgroundPhase: Phase = .second
     private var planePhase: PlanePhase = .first
     
@@ -62,6 +62,11 @@ final class GameViewController: UIViewController {
         displayLink?.add(to: .main, forMode: .default)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        dataSource.addRecord(record: barrierCount)
+    }
+    
     @objc private func tick() {
         guard
             let barierPresentationLayer = barrierImageView.layer.presentation(),
@@ -78,6 +83,10 @@ final class GameViewController: UIViewController {
                 self.planePhase = self.planePhase.next()
                 self.updatePlanePhase()
             }
+        }
+        
+        if planePresentationLayer.frame.maxY + planeImageView.frame.height <= barierPresentationLayer.frame.maxY {
+            barrierCount += 1
         }
     }
         
