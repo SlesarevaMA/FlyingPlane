@@ -10,6 +10,7 @@ target 'FlyingPlane' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
+  pod 'SnapKit', '~> 5.0.0'
   
 end
 

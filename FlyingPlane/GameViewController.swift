@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameViewController.swift
 //  FlyingPlane
 //
 //  Created by Margarita Slesareva on 15.06.2023.
@@ -14,14 +14,14 @@ private enum Metrics {
     static let barrierSide: CGFloat = 50
     
     enum Image {
-        static let plane = "Plane"
+//        static let plane = "Plane"
         static let bang = "Bang"
         static let background = "Background"
         static let stone = "Stone"
     }
 }
 
-final class ViewController: UIViewController {
+final class GameViewController: UIViewController {
     private let backgroundImageView = UIImageView()
     private let copieBackgroundImageView = UIImageView()
     private let planeImageView = UIImageView()
@@ -33,6 +33,17 @@ final class ViewController: UIViewController {
     private var planePhase: PlanePhase = .first
     
     private var displayLink: CADisplayLink?
+    private let dataSource: DataSource
+    
+    init(dataSource: DataSource) {
+        self.dataSource = dataSource
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +82,9 @@ final class ViewController: UIViewController {
     }
         
     private func addViews() {
-        view.addSubview(backgroundImageView)
-        view.addSubview(copieBackgroundImageView)
-        view.addSubview(planeImageView)
-        view.addSubview(barrierImageView)
-        view.addSubview(imageView)
+        [backgroundImageView, copieBackgroundImageView, planeImageView, barrierImageView, imageView].forEach {
+            view.addSubview($0)
+        }
     }
     
     private func configureViews() {
@@ -108,7 +117,10 @@ final class ViewController: UIViewController {
             width: Metrics.planeHeight,
             height: Metrics.planeHeight
         )
-        planeImageView.image = UIImage(named: Metrics.Image.plane)
+        
+        if let planeString = dataSource.getPlane() {
+            planeImageView.image = UIImage(named: planeString.rawValue)
+        }
         planeImageView.contentMode = .scaleToFill
         
         barrierImageView.image = UIImage(named: Metrics.Image.stone)
@@ -190,9 +202,13 @@ final class ViewController: UIViewController {
     private func updatePlanePhase() {
         switch planePhase {
         case .first:
-            self.planeImageView.isHidden = false
+            planeImageView.isHidden = false
             view.isUserInteractionEnabled = true
-            self.planeImageView.image = UIImage(named: Metrics.Image.plane)
+            
+            if let planeString = dataSource.getPlane() {
+                planeImageView.image = UIImage(named: planeString.rawValue)
+            }
+
         case .second:
             planeImageView.image = UIImage(named: Metrics.Image.bang)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -201,7 +217,7 @@ final class ViewController: UIViewController {
             }
         case .third:
             view.isUserInteractionEnabled = false
-            self.planeImageView.isHidden = true
+            planeImageView.isHidden = true
             planeImageView.frame.origin.x = (view.frame.width - Metrics.planeHeight) / 2
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.planePhase = self.planePhase.next()
