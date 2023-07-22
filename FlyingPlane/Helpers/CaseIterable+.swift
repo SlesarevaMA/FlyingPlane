@@ -1,22 +1,9 @@
 //
-//  Phase.swift
+//  CaseIterable+.swift
 //  FlyingPlane
 //
-//  Created by Margarita Slesareva on 18.06.2023.
+//  Created by Margarita Slesareva on 16.07.2023.
 //
-
-enum Phase: CaseIterable {
-    case first
-    case second
-    case third
-    case fourth
-}
-
-enum PlanePhase: CaseIterable{
-    case first
-    case second
-    case third
-}
 
 extension CaseIterable where Self: Equatable {
     func next() -> Self {

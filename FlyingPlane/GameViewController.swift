@@ -9,7 +9,7 @@ import UIKit
 import FirebaseCrashlytics
 
 private enum Metrics {
-    static let planeHeight: CGFloat = 120
+    static let planeHeight: CGFloat = 100
     static let step: CGFloat = 25
     static let barrierSide: CGFloat = 50
     
@@ -24,7 +24,7 @@ final class GameViewController: UIViewController {
     private let backgroundImageView = UIImageView()
     private let copieBackgroundImageView = UIImageView()
     private let planeImageView = UIImageView()
-    private let barrierImageView = UIImageView()
+    private let rockImageView = UIImageView()
     private let imageView = UIImageView()
     private let someView = UIView()
     
@@ -56,7 +56,7 @@ final class GameViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animate()
-        addBarrierAnimation()
+        addRockAnimation()
         
         displayLink = CADisplayLink(target: self, selector: #selector(tick))
         displayLink?.add(to: .main, forMode: .default)
@@ -69,14 +69,14 @@ final class GameViewController: UIViewController {
     
     @objc private func tick() {
         guard
-            let barierPresentationLayer = barrierImageView.layer.presentation(),
+            let rockPresentationLayer = rockImageView.layer.presentation(),
             let planePresentationLayer = planeImageView.layer.presentation(),
             planePhase == .first
         else {
             return
         }
         
-        if barierPresentationLayer.frame.intersects(planePresentationLayer.frame) {
+        if rockPresentationLayer.frame.intersects(planePresentationLayer.frame) {
             UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
                 self.updatePlanePhase()
             }) {_ in
@@ -85,13 +85,13 @@ final class GameViewController: UIViewController {
             }
         }
         
-        if planePresentationLayer.frame.maxY + planeImageView.frame.height <= barierPresentationLayer.frame.maxY {
+        if planePresentationLayer.frame.maxY + planeImageView.frame.height <= rockPresentationLayer.frame.maxY {
             barrierCount += 1
         }
     }
         
     private func addViews() {
-        [backgroundImageView, copieBackgroundImageView, planeImageView, barrierImageView, imageView].forEach {
+        [backgroundImageView, copieBackgroundImageView, planeImageView, rockImageView, imageView].forEach {
             view.addSubview($0)
         }
     }
@@ -132,8 +132,12 @@ final class GameViewController: UIViewController {
         }
         planeImageView.contentMode = .scaleToFill
         
-        barrierImageView.image = UIImage(named: Metrics.Image.stone)
-        barrierImageView.frame = CGRect(
+        rockImageView.image = UIImage(named: Metrics.Image.stone)
+        resetRockFrame()
+    }
+    
+    private func resetRockFrame() {
+        rockImageView.frame = CGRect(
             x: CGFloat.random(in: view.frame.width * 0.25 ..< view.frame.width * 0.75),
             y: 0,
             width: Metrics.barrierSide,
@@ -241,9 +245,12 @@ final class GameViewController: UIViewController {
         }
     }
     
-    private func addBarrierAnimation() {
-        UIView.animate(withDuration: 2,  delay: 0, options: [.repeat, .curveLinear]) {
-            self.barrierImageView.frame.origin.y = self.view.frame.height
-        }
+    private func addRockAnimation() {
+        UIView.animate(withDuration: 2,  delay: 0, options: [.curveLinear], animations: {
+            self.rockImageView.frame.origin.y = self.view.frame.height
+        }, completion: { _ in
+            self.resetRockFrame()
+            self.addRockAnimation()
+        })
     }
 }

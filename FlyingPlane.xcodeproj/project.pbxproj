@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80C602FE9F857E002FC4DB8B /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */; };
 		AB4432F02A43201100C42E54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */; };
 		AB98829B2A3E591500D9D889 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98829A2A3E591500D9D889 /* Phase.swift */; };
 		ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */; };
@@ -17,14 +18,18 @@
 		ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03D92A543F8E003768D4 /* MainViewController.swift */; };
 		ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */; };
 		ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */; };
+		ABDD0EFF2A6458D7002BB8D5 /* CaseIterable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */; };
+		ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F012A645951002BB8D5 /* PlanePhase.swift */; };
+		ABDD0F052A6459B8002BB8D5 /* Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F042A6459B8002BB8D5 /* Speed.swift */; };
+		ABDD0F072A645A11002BB8D5 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F062A645A11002BB8D5 /* Plane.swift */; };
 		ABE57FF22A5C149A00245871 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF12A5C149A00245871 /* RecordsViewController.swift */; };
 		ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */; };
 		ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE57FF62A5C17CE00245871 /* Identifiable.swift */; };
-		C9B64E996721BB0362BE7F15 /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.release.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.release.xcconfig"; sourceTree = "<group>"; };
+		539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyingPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00B9FDC710818BD2DC54498 /* Pods-FlyingPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.release.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.release.xcconfig"; sourceTree = "<group>"; };
 		AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB98829A2A3E591500D9D889 /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 		ABA3A9692A3B253F00CA4BE1 /* FlyingPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,11 +42,14 @@
 		ABBA03D92A543F8E003768D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+.swift"; sourceTree = "<group>"; };
+		ABDD0F012A645951002BB8D5 /* PlanePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanePhase.swift; sourceTree = "<group>"; };
+		ABDD0F042A6459B8002BB8D5 /* Speed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speed.swift; sourceTree = "<group>"; };
+		ABDD0F062A645A11002BB8D5 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		ABE57FF12A5C149A00245871 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		ABE57FF62A5C17CE00245871 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
-		C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyingPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.debug.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.debug.xcconfig"; sourceTree = "<group>"; };
+		C7FA8615E6E0AA3EF59DD34E /* Pods-FlyingPlane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.debug.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,20 +57,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9B64E996721BB0362BE7F15 /* Pods_FlyingPlane.framework in Frameworks */,
+				80C602FE9F857E002FC4DB8B /* Pods_FlyingPlane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84B1E93B9D829D00D6D57F44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ABA3A9602A3B253F00CA4BE1 = {
 			isa = PBXGroup;
 			children = (
 				ABA3A96B2A3B253F00CA4BE1 /* FlyingPlane */,
+				AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */,
 				ABA3A96A2A3B253F00CA4BE1 /* Products */,
 				C112B5B6C9116FA7489AD5E3 /* Pods */,
-				BD649346F1F81896EE3DB37E /* Frameworks */,
+				84B1E93B9D829D00D6D57F44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,12 +94,11 @@
 		ABA3A96B2A3B253F00CA4BE1 /* FlyingPlane */ = {
 			isa = PBXGroup;
 			children = (
-				AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */,
-				AB98829A2A3E591500D9D889 /* Phase.swift */,
+				ABDD0F002A645910002BB8D5 /* Entities */,
+				ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */,
 				ABBA03D92A543F8E003768D4 /* MainViewController.swift */,
 				ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */,
 				ABA3A9702A3B253F00CA4BE1 /* GameViewController.swift */,
-				ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */,
 				ABE57FF12A5C149A00245871 /* RecordsViewController.swift */,
 				ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */,
 				ABE57FF52A5C17AD00245871 /* Helpers */,
@@ -103,27 +119,31 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ABDD0F002A645910002BB8D5 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				AB98829A2A3E591500D9D889 /* Phase.swift */,
+				ABDD0F012A645951002BB8D5 /* PlanePhase.swift */,
+				ABDD0F042A6459B8002BB8D5 /* Speed.swift */,
+				ABDD0F062A645A11002BB8D5 /* Plane.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		ABE57FF52A5C17AD00245871 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				ABE57FF62A5C17CE00245871 /* Identifiable.swift */,
+				ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		BD649346F1F81896EE3DB37E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C6B1FD282F975439585BDA29 /* Pods_FlyingPlane.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C112B5B6C9116FA7489AD5E3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */,
-				0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */,
+				C7FA8615E6E0AA3EF59DD34E /* Pods-FlyingPlane.debug.xcconfig */,
+				A00B9FDC710818BD2DC54498 /* Pods-FlyingPlane.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -135,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABA3A97D2A3B254000CA4BE1 /* Build configuration list for PBXNativeTarget "FlyingPlane" */;
 			buildPhases = (
-				27861D334B954F16AEA40133 /* [CP] Check Pods Manifest.lock */,
+				B7F823FDA7ABF7B104F9963F /* [CP] Check Pods Manifest.lock */,
 				ABA3A9652A3B253F00CA4BE1 /* Sources */,
 				ABA3A9662A3B253F00CA4BE1 /* Frameworks */,
 				ABA3A9672A3B253F00CA4BE1 /* Resources */,
-				40B39522BA68B0C3A2CF7877 /* [CP] Embed Pods Frameworks */,
 				AB4432F32A43266800C42E54 /* ShellScript */,
+				C8319692134FC62F1264FAB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,7 +218,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27861D334B954F16AEA40133 /* [CP] Check Pods Manifest.lock */ = {
+		AB4432F32A43266800C42E54 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+		};
+		B7F823FDA7ABF7B104F9963F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,7 +259,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		40B39522BA68B0C3A2CF7877 /* [CP] Embed Pods Frameworks */ = {
+		C8319692134FC62F1264FAB1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,25 +276,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB4432F32A43266800C42E54 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -263,15 +283,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */,
 				ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */,
 				ABA3A9712A3B253F00CA4BE1 /* GameViewController.swift in Sources */,
 				ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */,
+				ABDD0F052A6459B8002BB8D5 /* Speed.swift in Sources */,
 				ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */,
+				ABDD0F072A645A11002BB8D5 /* Plane.swift in Sources */,
 				ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */,
 				ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */,
 				AB98829B2A3E591500D9D889 /* Phase.swift in Sources */,
 				ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */,
 				ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */,
+				ABDD0EFF2A6458D7002BB8D5 /* CaseIterable+.swift in Sources */,
 				ABE57FF22A5C149A00245871 /* RecordsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +430,7 @@
 		};
 		ABA3A97E2A3B254000CA4BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C873075AA4C535E81FB8E586 /* Pods-FlyingPlane.debug.xcconfig */;
+			baseConfigurationReference = C7FA8615E6E0AA3EF59DD34E /* Pods-FlyingPlane.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -439,7 +463,7 @@
 		};
 		ABA3A97F2A3B254000CA4BE1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FCBAFBABF25B53CC25152EF /* Pods-FlyingPlane.release.xcconfig */;
+			baseConfigurationReference = A00B9FDC710818BD2DC54498 /* Pods-FlyingPlane.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

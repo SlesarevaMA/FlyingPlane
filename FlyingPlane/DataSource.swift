@@ -7,18 +7,6 @@
 
 import UIKit
 
-enum Speed: String {
-    case slow
-    case average
-    case high
-}
-
-enum Plane: String {
-    case plane1
-    case plane2
-    case plane3
-}
-
 protocol DataSource {
     func setSpeed(_ speed: Speed)
     func setPlane(_ plane: Plane)
