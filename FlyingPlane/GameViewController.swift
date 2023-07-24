@@ -14,7 +14,6 @@ private enum Metrics {
     static let barrierSide: CGFloat = 50
     
     enum Image {
-        static let bang = "Bang"
         static let background = "Background"
         static let stone = "Stone"
     }
@@ -28,11 +27,11 @@ final class GameViewController: UIViewController {
     private let imageView = UIImageView()
     private let someView = UIView()
     
-    private let animationLogic: AnimationLogic
+    private let animationLogic: ViewModel
     
     private var displayLink: CADisplayLink?
     
-    init(animationLogic: AnimationLogic) {
+    init(animationLogic: ViewModel) {
         self.animationLogic = animationLogic
         
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +60,42 @@ final class GameViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        animationLogic.dataSource?.addRecord(record: animationLogic.barrierCount)
+        animationLogic.addRecord()
+    }
+    
+    func changeBackgroundPhase(firstHeight: CGFloat, secondHeight: CGFloat) {
+        backgroundImageView.frame.origin.y = firstHeight
+        copieBackgroundImageView.frame.origin.y = secondHeight
+    }
+    
+    func getHeight() -> CGFloat {
+        return view.frame.height
+    }
+    
+    func copieBackgroundIsHidden(isHidden: Bool) {
+        copieBackgroundImageView.isHidden = isHidden
+    }
+    
+    func changePlanePhase() {
+        UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
+            self.animationLogic.updatePlanePhase()
+        }) {_ in
+            self.animationLogic.changePlanePhase()
+            self.animationLogic.updatePlanePhase()
+        }
+    }
+    
+    func takeStartingPosition() {
+        planeImageView.frame.origin.x = (view.frame.width - Metrics.planeHeight) / 2
+    }
+    
+    func changePlaneImage(imageString: String) {
+        planeImageView.image = UIImage(named: imageString)
+    }
+    
+    func changeVisibilityPlane(visibility: Bool) {
+        planeImageView.isHidden = !visibility
+        view.isUserInteractionEnabled = visibility
     }
     
     @objc private func tick() {
@@ -132,86 +166,34 @@ final class GameViewController: UIViewController {
     
     private func animate() {
         UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .curveLinear], animations: {
-            self.updateBackgroundPhase()
-        }) { _ in
-            self.animationLogic.backgroundPhase = self.animationLogic.backgroundPhase.next()
-        }
-    }
-    
-    private func updateBackgroundPhase() {
-        switch animationLogic.backgroundPhase {
-        case .first:
-            copieBackgroundImageView.isHidden = true
-            backgroundImageView.frame.origin.y = 0
-            copieBackgroundImageView.frame.origin.y = -backgroundImageView.frame.height
-        case .second:
-            copieBackgroundImageView.isHidden = false
-            copieBackgroundImageView.frame.origin.y = 0
-            backgroundImageView.frame.origin.y = view.frame.height
-        case .third:
-            backgroundImageView.frame.origin.y = -backgroundImageView.frame.height
-            copieBackgroundImageView.frame.origin.y = 0
-        case .fourth:
-            backgroundImageView.frame.origin.y = 0
-            copieBackgroundImageView.frame.origin.y = backgroundImageView.frame.height
-        }
+            self.animationLogic.updateBackgroundPhase()
+        })
     }
     
     @objc private func viewTouched(gestureRecognizer: UIGestureRecognizer) {
         let touchLocation = gestureRecognizer.location(in: view)
         
         if touchLocation.x < view.bounds.width / 2 {
-            left()
+            moveOnTap(to: -1)
         } else {
-            right()
+            moveOnTap(to: 1)
         }
     }
     
-    func right() {
-        let nextFrame = move(to: Metrics.step)
+    private func moveOnTap(to index: CGFloat) {
+        let nextFrame = move(to: Metrics.step * index)
         animatedStep(nextFrame: nextFrame)
 
-        if nextFrame.maxX > view.frame.width * 0.85 {
+        if nextFrame.origin.x > view.frame.width * 0.85 || nextFrame.origin.x < view.frame.width * 0.15 {
             changePlanePhase()
         }
     }
     
-    func left() {
-        let nextFrame = move(to: -Metrics.step)
-        animatedStep(nextFrame: nextFrame)
-
-        if nextFrame.minX < view.frame.width * 0.15 {
-            changePlanePhase()
-        }
-    }
-    
-    func changePlanePhase() {
-        UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
-            self.animationLogic.updatePlanePhase()
-        }) {_ in
-            self.animationLogic.planePhase = self.animationLogic.planePhase.next()
-            self.animationLogic.updatePlanePhase()
-        }
-    }
-    
-    func move(to step: CGFloat) -> CGRect {
+    private func move(to step: CGFloat) -> CGRect {
         return planeImageView.frame.offsetBy(dx: step, dy: 0)
     }
     
-    func takeStartingPosition() {
-        planeImageView.frame.origin.x = (view.frame.width - Metrics.planeHeight) / 2
-    }
-    
-    func changePlaneImage(imageString: String) {
-        planeImageView.image = UIImage(named: imageString)
-    }
-    
-    func changeVisibilityPlane(visibility: Bool) {
-        planeImageView.isHidden = !visibility
-        view.isUserInteractionEnabled = visibility
-    }
-    
-    func animatedStep(nextFrame: CGRect) {
+    private func animatedStep(nextFrame: CGRect) {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
             self.planeImageView.frame = nextFrame
         }

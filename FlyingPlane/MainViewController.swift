@@ -76,7 +76,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
-        let animationLogic = AnimationLogic()
+        let animationLogic = ViewModel()
         let gameViewController = GameViewController(animationLogic: animationLogic)
         animationLogic.view = gameViewController
         animationLogic.dataSource = dataSource
