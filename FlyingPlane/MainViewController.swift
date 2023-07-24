@@ -76,7 +76,11 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
-        let gameViewController = GameViewController(dataSource: dataSource)
+        let animationLogic = AnimationLogic()
+        let gameViewController = GameViewController(animationLogic: animationLogic)
+        animationLogic.view = gameViewController
+        animationLogic.dataSource = dataSource
+        
         navigationController?.pushViewController(gameViewController, animated: true)
     }
     
