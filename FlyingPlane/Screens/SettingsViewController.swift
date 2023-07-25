@@ -23,15 +23,13 @@ final class SettingsViewController: UIViewController {
     private let nameLabel = UILabel()
     private let planeSegmentControl = UISegmentedControl()
     private let speedSegmentControl = UISegmentedControl()
-    private let nameTextView = UITextView()
+    private let nameTextView = UITextField()
     private let imagePicker = UIImagePickerController()
     
-    private let dataSource: DataSource
+    private let repository: SettingsRepository
     
-    private var isFirstLaunch = true
-    
-    init(dataSource: DataSource) {
-        self.dataSource = dataSource
+    init(repository: SettingsRepository) {
+        self.repository = repository
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,12 +46,17 @@ final class SettingsViewController: UIViewController {
         configureViews()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        personImageView.layer.cornerRadius = personImageView.bounds.width / 2
+    }
+    
     private func addViews() {
         [personImageView, planeLabel, planeSegmentControl, speedLabel, speedSegmentControl, nameLabel, nameTextView]
-            .forEach
-        {
-            view.addSubview($0)
-        }
+            .forEach {
+                view.addSubview($0)
+            }
     }
     
     private func addConstraints() {
@@ -103,9 +106,11 @@ final class SettingsViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = .white
         
-        personImageView.image = dataSource.loadImage()
-        personImageView.contentMode = .scaleAspectFit
-        personImageView.clipsToBounds = true
+        repository.loadPersonImage { image in
+            self.personImageView.image = image
+        }
+        
+        personImageView.layer.masksToBounds = true
         personImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOnImageView)))
         personImageView.isUserInteractionEnabled = true
 
@@ -131,11 +136,11 @@ final class SettingsViewController: UIViewController {
     @objc private func planeChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            dataSource.setPlane(.plane1)
+            repository.setPlane(.plane1)
         case 1:
-            dataSource.setPlane(.plane2)
+            repository.setPlane(.plane2)
         case 2:
-            dataSource.setPlane(.plane3)
+            repository.setPlane(.plane3)
         default:
             break
         }
@@ -144,11 +149,11 @@ final class SettingsViewController: UIViewController {
     @objc private func speedChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            dataSource.setSpeed(.slow)
+            repository.setSpeed(.slow)
         case 1:
-            dataSource.setSpeed(.average)
+            repository.setSpeed(.average)
         case 2:
-            dataSource.setSpeed(.high)
+            repository.setSpeed(.high)
         default:
             break
         }
@@ -215,7 +220,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
         picker.dismiss(animated: true, completion: nil)
         
         if let image = info[.originalImage] as? UIImage {
-            dataSource.saveImage(image: image)
+            repository.saveImage(image: image)
         }
     }
 }

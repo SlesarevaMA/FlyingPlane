@@ -1,5 +1,5 @@
 //
-//  DataSource.swift
+//  SettingsRepository.swift
 //  FlyingPlane
 //
 //  Created by Margarita Slesareva on 09.07.2023.
@@ -7,21 +7,22 @@
 
 import UIKit
 
-protocol DataSource {
+protocol SettingsRepository {
     func setSpeed(_ speed: Speed)
     func setPlane(_ plane: Plane)
     func getSpeed() -> Speed?
     func getPlane() -> Plane?
-    func addRecord(record: Int)
-    func getRecords() -> [Int]
-    func loadImage() -> UIImage?
+    func loadPersonImage(comletion: @escaping (UIImage?) -> Void)
     func saveImage(image: UIImage)
 }
 
-final class DataSourceImpl: DataSource {
-    private let stateStorage = UserDefaults.standard
+final class SettingsRepositoryImpl: SettingsRepository {
+    private let stateStorage: UserDefalutsProtocol
     private let fileManager = FileManager.default
-    private var records = [Int]()
+    
+    init(userDefaults: UserDefalutsProtocol = UserDefaults.standard) {
+        stateStorage = userDefaults
+    }
     
     func setSpeed(_ speed: Speed) {
         let str = String(describing: Speed.self)
@@ -36,7 +37,7 @@ final class DataSourceImpl: DataSource {
     func getSpeed() -> Speed? {
         let keyString = String(describing: Speed.self)
         
-        guard let value = stateStorage.object(forKey: keyString) as? String else {
+        guard let value = stateStorage.string(forKey: keyString) else {
             return nil
         }
                             
@@ -46,33 +47,28 @@ final class DataSourceImpl: DataSource {
     func getPlane() -> Plane? {
         let keyString = String(describing: Plane.self)
         
-        guard let value = stateStorage.object(forKey: keyString) as? String else {
+        guard let value = stateStorage.string(forKey: keyString) else {
             return nil
         }
                             
         return Plane(rawValue: value)
     }
     
-    func addRecord(record: Int) {
-        records.append(record)
-    }
-    
-    func getRecords() -> [Int] {
-        return records
-    }
-    
-    func loadImage() -> UIImage? {
-        guard let fileName = stateStorage.object(forKey: "PersonImage") as? String else {
-            return nil
+    func loadPersonImage(comletion: @escaping (UIImage?) -> Void) {
+        DispatchQueue.global().async {
+            guard let imageData = self.loadPersonImage() else {
+                DispatchQueue.main.async {
+                    comletion(nil)
+                }
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: imageData)
+                comletion(image)
+            }
         }
-        
-        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
-        }
-        
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        let image = UIImage(contentsOfFile: fileURL.path)
-        return image
     }
 
     func saveImage(image: UIImage) {
@@ -102,5 +98,18 @@ final class DataSourceImpl: DataSource {
             print(error.localizedDescription)
             return
         }
+    }
+    
+    private func loadPersonImage() -> Data? {
+        guard let fileName = stateStorage.object(forKey: "PersonImage") as? String else {
+            return nil
+        }
+        
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        return try? Data(contentsOf: fileURL)
     }
 }

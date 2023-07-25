@@ -15,8 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let dataSource: DataSource = DataSourceImpl()
-        let viewController = MainViewController(dataSource: dataSource)
+        let settingsRepository: SettingsRepository = SettingsRepositoryImpl()
+        let recordsRepository: RecordsRepository = RecordsRepositoryImpl()
+        
+        let viewController = MainViewController(
+            settingsRepository: settingsRepository,
+            recordsRepository: recordsRepository
+        )
         let navigationViewController = UINavigationController(rootViewController: viewController)
         
         window.rootViewController = navigationViewController

@@ -9,10 +9,10 @@ import UIKit
 
 final class RecordsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private let tableView = UITableView()
-    private let dataSource: DataSource
+    private let repository: RecordsRepository
     
-    init(dataSource: DataSource) {
-        self.dataSource = dataSource
+    init(repository: RecordsRepository) {
+        self.repository = repository
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,7 +33,7 @@ final class RecordsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.getRecords().count
+        return repository.getRecords().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +41,7 @@ final class RecordsViewController: UIViewController, UITableViewDelegate, UITabl
             return UITableViewCell()
         }
         
-        let recordString = "\(dataSource.getRecords()[indexPath.row])"
+        let recordString = "\(repository.getRecords()[indexPath.row])"
         
         cell.configure(text: recordString)
         

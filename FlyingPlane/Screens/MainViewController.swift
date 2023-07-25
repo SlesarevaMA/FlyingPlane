@@ -18,10 +18,12 @@ final class MainViewController: UIViewController {
     private let settingsButton = UIButton()
     private let recordsButton = UIButton()
     
-    private let dataSource: DataSource
+    private let settingsRepository: SettingsRepository
+    private let recordsRepository: RecordsRepository
     
-    init(dataSource: DataSource) {
-        self.dataSource = dataSource
+    init(settingsRepository: SettingsRepository, recordsRepository: RecordsRepository) {
+        self.settingsRepository = settingsRepository
+        self.recordsRepository = recordsRepository
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -76,21 +78,24 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
-        let animationLogic = ViewModel()
-        let gameViewController = GameViewController(animationLogic: animationLogic)
-        animationLogic.view = gameViewController
-        animationLogic.dataSource = dataSource
+        let presenter = PresenterImpl(
+            settingsRepository: settingsRepository,
+            recordsRepository: recordsRepository,
+            timer: ScreenUpdateTimerImpl()
+        )
+        let gameViewController = GameViewController(presenter: presenter)
+        presenter.view = gameViewController
         
         navigationController?.pushViewController(gameViewController, animated: true)
     }
     
     @objc private func settingsButtonTapped() {
-        let settingsViewController = SettingsViewController(dataSource: dataSource)
+        let settingsViewController = SettingsViewController(repository: settingsRepository)
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
 
     @objc private func recordsButtonTapped() {
-        let recordsViewController = RecordsViewController(dataSource: dataSource)
+        let recordsViewController = RecordsViewController(repository: recordsRepository)
         navigationController?.pushViewController(recordsViewController, animated: true)
     }
 }

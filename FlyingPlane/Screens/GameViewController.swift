@@ -19,20 +19,23 @@ private enum Metrics {
     }
 }
 
+enum BackgroundPosition {
+    case top, middle, bottom
+}
+
 final class GameViewController: UIViewController {
     private let backgroundImageView = UIImageView()
-    private let copieBackgroundImageView = UIImageView()
+    private let secondBackgroundImageView = UIImageView()
+    
     private let planeImageView = UIImageView()
     private let rockImageView = UIImageView()
     private let imageView = UIImageView()
     private let someView = UIView()
     
-    private let animationLogic: ViewModel
+    private let presenter: PresenterImpl
     
-    private var displayLink: CADisplayLink?
-    
-    init(animationLogic: ViewModel) {
-        self.animationLogic = animationLogic
+    init(presenter: PresenterImpl) {
+        self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,6 +49,8 @@ final class GameViewController: UIViewController {
                 
         addViews()
         configureViews()
+        
+        presenter.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,35 +59,50 @@ final class GameViewController: UIViewController {
         animate()
         addRockAnimation()
         
-        displayLink = CADisplayLink(target: self, selector: #selector(tick))
-        displayLink?.add(to: .main, forMode: .default)
+        presenter.viewDidAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        animationLogic.addRecord()
+        
+        presenter.viewDidDisappear()
     }
     
-    func changeBackgroundPhase(firstHeight: CGFloat, secondHeight: CGFloat) {
-        backgroundImageView.frame.origin.y = firstHeight
-        copieBackgroundImageView.frame.origin.y = secondHeight
+    func changeBackgroundPosition(
+        firstBackgroundPosition: BackgroundPosition,
+        secondBackgroundPosition: BackgroundPosition
+    ) {
+        backgroundImageView.frame.origin.y = backgroundLocation(for: firstBackgroundPosition)
+        secondBackgroundImageView.frame.origin.y = backgroundLocation(for: secondBackgroundPosition)
     }
     
-    func getHeight() -> CGFloat {
-        return view.frame.height
+    func showSecondBackgrund() {
+        secondBackgroundImageView.isHidden = false
     }
     
-    func copieBackgroundIsHidden(isHidden: Bool) {
-        copieBackgroundImageView.isHidden = isHidden
+    func hideSecondBackground() {
+        secondBackgroundImageView.isHidden = true
     }
     
-    func changePlanePhase() {
-        UIView.animate(withDuration: 3, delay: 0, options: [.repeat], animations:  {
-            self.animationLogic.updatePlanePhase()
-        }) {_ in
-            self.animationLogic.changePlanePhase()
-            self.animationLogic.updatePlanePhase()
+    func isPlaneCrashed() -> Bool {
+        guard
+            let rockLayerFrame = rockImageView.layer.presentation()?.frame,
+            let planeLayerFrame = planeImageView.layer.presentation()?.frame
+        else {
+            return false
         }
+        
+        let planeIntersectsLeftRocks = planeLayerFrame.origin.x < view.frame.width * 0.15
+        let planeIntersectsRightRocks = planeLayerFrame.origin.x > view.frame.width * 0.85
+        let planeIntersectsRock = rockLayerFrame.intersects(planeLayerFrame)
+        
+        return planeIntersectsLeftRocks || planeIntersectsRightRocks || planeIntersectsRock
+    }
+    
+    func updateAnimated(animations: @escaping () -> Void, completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.2, animations: animations, completion: { finished in
+            completion()
+        })
     }
     
     func takeStartingPosition() {
@@ -93,24 +113,13 @@ final class GameViewController: UIViewController {
         planeImageView.image = UIImage(named: imageString)
     }
     
-    func changeVisibilityPlane(visibility: Bool) {
-        planeImageView.isHidden = !visibility
-        view.isUserInteractionEnabled = visibility
-    }
-    
-    @objc private func tick() {
-        guard
-            let rockLayerFrame = rockImageView.layer.presentation()?.frame,
-            let planeLayerFrame = planeImageView.layer.presentation()?.frame
-        else {
-            return
-        }
-        
-        animationLogic.changePhase(rockLayerFrame: rockLayerFrame, planeLayerFrame: planeLayerFrame)
+    func changePlaneVisibility(isVisible: Bool) {
+        planeImageView.isHidden = !isVisible
+        view.isUserInteractionEnabled = isVisible
     }
     
     private func addViews() {
-        [backgroundImageView, copieBackgroundImageView, planeImageView, rockImageView, imageView].forEach {
+        [backgroundImageView, secondBackgroundImageView, planeImageView, rockImageView, imageView].forEach {
             view.addSubview($0)
         }
     }
@@ -118,26 +127,21 @@ final class GameViewController: UIViewController {
     private func configureViews() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTouched)))
         
-        backgroundImageView.image = UIImage(named: Metrics.Image.background)
+        let backgroundImage = UIImage(named: Metrics.Image.background)
+        
+        backgroundImageView.image = backgroundImage
         backgroundImageView.frame = view.bounds
         backgroundImageView.contentMode = .scaleToFill
         
-        guard let cgImage = UIImage(named: Metrics.Image.background)?.cgImage else {
-            return
-        }
-        
-        copieBackgroundImageView.image = UIImage(
-            cgImage: cgImage,
-            scale: 1,
-            orientation: .up
-        )
-        copieBackgroundImageView.frame = CGRect(
+        secondBackgroundImageView.image = backgroundImage
+
+        secondBackgroundImageView.frame = CGRect(
             x: backgroundImageView.frame.origin.x,
             y: -backgroundImageView.frame.height,
             width: backgroundImageView.frame.width,
             height: backgroundImageView.frame.height
         )
-        copieBackgroundImageView.contentMode = .scaleToFill
+        secondBackgroundImageView.contentMode = .scaleToFill
         
         planeImageView.frame = CGRect(
             x: (view.frame.width - Metrics.planeHeight) / 2,
@@ -146,9 +150,6 @@ final class GameViewController: UIViewController {
             height: Metrics.planeHeight
         )
         
-        if let planeString = animationLogic.dataSource?.getPlane() {
-            planeImageView.image = UIImage(named: planeString.rawValue)
-        }
         planeImageView.contentMode = .scaleToFill
         
         rockImageView.image = UIImage(named: Metrics.Image.stone)
@@ -164,9 +165,22 @@ final class GameViewController: UIViewController {
         )
     }
     
+    private func backgroundLocation(for position: BackgroundPosition) -> CGFloat {
+        let height = view.frame.height
+        
+        switch position {
+        case .top:
+            return -height
+        case .middle:
+            return 0
+        case .bottom:
+            return height
+        }
+    }
+    
     private func animate() {
         UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .curveLinear], animations: {
-            self.animationLogic.updateBackgroundPhase()
+            self.presenter.updateBackgroundPhase()
         })
     }
     
@@ -183,14 +197,10 @@ final class GameViewController: UIViewController {
     private func moveOnTap(to index: CGFloat) {
         let nextFrame = move(to: Metrics.step * index)
         animatedStep(nextFrame: nextFrame)
-
-        if nextFrame.origin.x > view.frame.width * 0.85 || nextFrame.origin.x < view.frame.width * 0.15 {
-            changePlanePhase()
-        }
     }
     
-    private func move(to step: CGFloat) -> CGRect {
-        return planeImageView.frame.offsetBy(dx: step, dy: 0)
+    private func move(to dx: CGFloat) -> CGRect {
+        return planeImageView.frame.offsetBy(dx: dx, dy: 0)
     }
     
     private func animatedStep(nextFrame: CGRect) {

@@ -10,7 +10,10 @@
 		80C602FE9F857E002FC4DB8B /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */; };
 		AB4432F02A43201100C42E54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */; };
 		AB98829B2A3E591500D9D889 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98829A2A3E591500D9D889 /* Phase.swift */; };
-		AB9D53B82A6C2A7F00A01F6E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53B72A6C2A7F00A01F6E /* ViewModel.swift */; };
+		AB9D53B82A6C2A7F00A01F6E /* PresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */; };
+		AB9D53C22A70416400A01F6E /* RecordsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53C12A70416400A01F6E /* RecordsRepository.swift */; };
+		AB9D53C42A7044B600A01F6E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53C32A7044B600A01F6E /* UserDefaults.swift */; };
+		AB9D53C62A706F1600A01F6E /* ScreenUpdateTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53C52A706F1600A01F6E /* ScreenUpdateTimer.swift */; };
 		ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */; };
 		ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A96E2A3B253F00CA4BE1 /* SceneDelegate.swift */; };
 		ABA3A9712A3B253F00CA4BE1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3A9702A3B253F00CA4BE1 /* GameViewController.swift */; };
@@ -18,7 +21,7 @@
 		ABA3A9792A3B254000CA4BE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A9772A3B254000CA4BE1 /* LaunchScreen.storyboard */; };
 		ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03D92A543F8E003768D4 /* MainViewController.swift */; };
 		ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */; };
-		ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */; };
+		ABCB8EEF2A5ABFD10069F56D /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */; };
 		ABDD0EFF2A6458D7002BB8D5 /* CaseIterable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */; };
 		ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F012A645951002BB8D5 /* PlanePhase.swift */; };
 		ABDD0F052A6459B8002BB8D5 /* Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F042A6459B8002BB8D5 /* Speed.swift */; };
@@ -33,7 +36,10 @@
 		A00B9FDC710818BD2DC54498 /* Pods-FlyingPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.release.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.release.xcconfig"; sourceTree = "<group>"; };
 		AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB98829A2A3E591500D9D889 /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
-		AB9D53B72A6C2A7F00A01F6E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterImpl.swift; sourceTree = "<group>"; };
+		AB9D53C12A70416400A01F6E /* RecordsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsRepository.swift; sourceTree = "<group>"; };
+		AB9D53C32A7044B600A01F6E /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		AB9D53C52A706F1600A01F6E /* ScreenUpdateTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUpdateTimer.swift; sourceTree = "<group>"; };
 		ABA3A9692A3B253F00CA4BE1 /* FlyingPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA3A96C2A3B253F00CA4BE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABA3A96E2A3B253F00CA4BE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +49,7 @@
 		ABA3A97A2A3B254000CA4BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBA03D92A543F8E003768D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
 		ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+.swift"; sourceTree = "<group>"; };
 		ABDD0F012A645951002BB8D5 /* PlanePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanePhase.swift; sourceTree = "<group>"; };
 		ABDD0F042A6459B8002BB8D5 /* Speed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speed.swift; sourceTree = "<group>"; };
@@ -74,6 +80,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB9D53BD2A703C1100A01F6E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				AB9D53C02A703C5100A01F6E /* Cells */,
+				ABBA03D92A543F8E003768D4 /* MainViewController.swift */,
+				ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */,
+				ABA3A9702A3B253F00CA4BE1 /* GameViewController.swift */,
+				ABE57FF12A5C149A00245871 /* RecordsViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		AB9D53C02A703C5100A01F6E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		ABA3A9602A3B253F00CA4BE1 = {
 			isa = PBXGroup;
 			children = (
@@ -96,16 +122,15 @@
 		ABA3A96B2A3B253F00CA4BE1 /* FlyingPlane */ = {
 			isa = PBXGroup;
 			children = (
+				AB9D53BD2A703C1100A01F6E /* Screens */,
 				ABDD0F002A645910002BB8D5 /* Entities */,
-				ABCB8EEE2A5ABFD10069F56D /* DataSource.swift */,
-				ABBA03D92A543F8E003768D4 /* MainViewController.swift */,
-				ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */,
-				ABA3A9702A3B253F00CA4BE1 /* GameViewController.swift */,
-				AB9D53B72A6C2A7F00A01F6E /* ViewModel.swift */,
-				ABE57FF12A5C149A00245871 /* RecordsViewController.swift */,
-				ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */,
+				ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */,
+				AB9D53C12A70416400A01F6E /* RecordsRepository.swift */,
+				AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */,
+				AB9D53C32A7044B600A01F6E /* UserDefaults.swift */,
 				ABE57FF52A5C17AD00245871 /* Helpers */,
 				ABA3A9802A3B268100CA4BE1 /* Supporting Files */,
+				AB9D53C52A706F1600A01F6E /* ScreenUpdateTimer.swift */,
 			);
 			path = FlyingPlane;
 			sourceTree = "<group>";
@@ -287,9 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */,
-				ABCB8EEF2A5ABFD10069F56D /* DataSource.swift in Sources */,
+				ABCB8EEF2A5ABFD10069F56D /* SettingsRepository.swift in Sources */,
 				ABA3A9712A3B253F00CA4BE1 /* GameViewController.swift in Sources */,
 				ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */,
+				AB9D53C22A70416400A01F6E /* RecordsRepository.swift in Sources */,
+				AB9D53C42A7044B600A01F6E /* UserDefaults.swift in Sources */,
 				ABDD0F052A6459B8002BB8D5 /* Speed.swift in Sources */,
 				ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */,
 				ABDD0F072A645A11002BB8D5 /* Plane.swift in Sources */,
@@ -297,7 +324,8 @@
 				ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */,
 				AB98829B2A3E591500D9D889 /* Phase.swift in Sources */,
 				ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */,
-				AB9D53B82A6C2A7F00A01F6E /* ViewModel.swift in Sources */,
+				AB9D53B82A6C2A7F00A01F6E /* PresenterImpl.swift in Sources */,
+				AB9D53C62A706F1600A01F6E /* ScreenUpdateTimer.swift in Sources */,
 				ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */,
 				ABDD0EFF2A6458D7002BB8D5 /* CaseIterable+.swift in Sources */,
 				ABE57FF22A5C149A00245871 /* RecordsViewController.swift in Sources */,
