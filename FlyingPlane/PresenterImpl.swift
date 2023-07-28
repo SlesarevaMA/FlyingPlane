@@ -67,9 +67,10 @@ final class PresenterImpl {
     func viewDidDisappear() {
         timer.stop()
         
-        if let person = settingsRepository.getPerson() {
-            recordsRepository.addRecord(name: person, score: currentScore)
-        }
+        currentScore = view?.score ?? 0
+        let person = settingsRepository.getPerson() ?? ""
+        
+        recordsRepository.addRecord(name: person, score: currentScore)
     }
         
     func updateBackgroundPhase() {

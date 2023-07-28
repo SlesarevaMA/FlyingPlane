@@ -40,6 +40,12 @@ final class MainViewController: UIViewController {
         configureViews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        recordsRepository.saveRecords()
+    }
+    
     private func addViews() {
         [startButton, settingsButton, recordsButton].forEach {
             view.addSubview($0)

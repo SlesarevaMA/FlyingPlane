@@ -10,6 +10,7 @@ import Foundation
 protocol RecordsRepository {
     func addRecord(name: String, score: Int)
     func getRecords() -> [RecordModel]
+    func saveRecords()
 }
 
 final class RecordsRepositoryImpl: RecordsRepository {
@@ -22,7 +23,6 @@ final class RecordsRepositoryImpl: RecordsRepository {
 
     func addRecord(name: String, score: Int) {
         records[name] = score
-        stateStorage.set(records, forKey: Records.current.rawValue)
     }
     
     func getRecords() -> [RecordModel] {
@@ -44,5 +44,9 @@ final class RecordsRepositoryImpl: RecordsRepository {
         }
         
         return result
+    }
+    
+    func saveRecords() {
+        stateStorage.set(records, forKey: Records.current.rawValue)
     }
 }

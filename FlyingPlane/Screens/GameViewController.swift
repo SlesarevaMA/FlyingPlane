@@ -26,6 +26,7 @@ enum BackgroundPosition {
 final class GameViewController: UIViewController {
     
     var speed: Double?
+    var score = 0
     
     private let backgroundImageView = UIImageView()
     private let secondBackgroundImageView = UIImageView()
@@ -98,6 +99,10 @@ final class GameViewController: UIViewController {
         let planeIntersectsRightRocks = planeLayerFrame.origin.x > view.frame.width * 0.85
         let planeIntersectsRock = rockLayerFrame.intersects(planeLayerFrame)
         
+        if planeLayerFrame.maxY + Metrics.planeHeight <= rockLayerFrame.maxY {
+            score += 1
+        }
+
         return planeIntersectsLeftRocks || planeIntersectsRightRocks || planeIntersectsRock
     }
     
