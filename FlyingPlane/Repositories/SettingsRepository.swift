@@ -12,6 +12,8 @@ protocol SettingsRepository {
     func setPlane(_ plane: Plane)
     func getSpeed() -> Speed?
     func getPlane() -> Plane?
+    func setPerson(_ name: String)
+    func getPerson() -> String?
     func loadPersonImage(comletion: @escaping (UIImage?) -> Void)
     func saveImage(image: UIImage)
 }
@@ -52,6 +54,14 @@ final class SettingsRepositoryImpl: SettingsRepository {
         }
                             
         return Plane(rawValue: value)
+    }
+    
+    func setPerson(_ name: String) {
+        stateStorage.set(name, forKey: Person.current.rawValue)
+    }
+    
+    func getPerson() -> String? {
+        return stateStorage.string(forKey: Person.current.rawValue)
     }
     
     func loadPersonImage(comletion: @escaping (UIImage?) -> Void) {

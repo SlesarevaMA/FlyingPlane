@@ -37,13 +37,14 @@ final class RecordsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.reuseIdentifier, for: indexPath) as? RecordTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RecordTableViewCell.reuseIdentifier, for: indexPath
+        ) as? RecordTableViewCell else {
             return UITableViewCell()
         }
         
-        let recordString = "\(repository.getRecords()[indexPath.row])"
-        
-        cell.configure(text: recordString)
+        let records = repository.getRecords()
+        cell.configure(with: records[indexPath.row])
         
         return cell
     }

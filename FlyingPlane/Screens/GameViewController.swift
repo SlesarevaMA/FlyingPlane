@@ -24,6 +24,9 @@ enum BackgroundPosition {
 }
 
 final class GameViewController: UIViewController {
+    
+    var speed: Double?
+    
     private let backgroundImageView = UIImageView()
     private let secondBackgroundImageView = UIImageView()
     
@@ -55,11 +58,10 @@ final class GameViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        presenter.viewDidAppear()
         
         animate()
         addRockAnimation()
-        
-        presenter.viewDidAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -179,9 +181,11 @@ final class GameViewController: UIViewController {
     }
     
     private func animate() {
-        UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .curveLinear], animations: {
-            self.presenter.updateBackgroundPhase()
-        })
+        if let speed {
+            UIView.animate(withDuration: 3 * speed, delay: 0, options: [.repeat, .curveLinear], animations: {
+                self.presenter.updateBackgroundPhase()
+            })
+        }
     }
     
     @objc private func viewTouched(gestureRecognizer: UIGestureRecognizer) {
@@ -210,11 +214,13 @@ final class GameViewController: UIViewController {
     }
     
     private func addRockAnimation() {
-        UIView.animate(withDuration: 2,  delay: 0, options: [.curveLinear], animations: {
-            self.rockImageView.frame.origin.y = self.view.frame.height
-        }, completion: { _ in
-            self.resetRockFrame()
-            self.addRockAnimation()
-        })
+        if let speed {
+            UIView.animate(withDuration: 2 * speed,  delay: 0, options: [.curveLinear], animations: {
+                self.rockImageView.frame.origin.y = self.view.frame.height
+            }, completion: { _ in
+                self.resetRockFrame()
+                self.addRockAnimation()
+            })
+        }
     }
 }

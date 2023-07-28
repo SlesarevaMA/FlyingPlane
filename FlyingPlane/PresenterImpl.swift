@@ -45,6 +45,19 @@ final class PresenterImpl {
     }
     
     func viewDidAppear() {
+        guard let speed = settingsRepository.getSpeed() else {
+            return
+        }
+        
+        switch speed {
+        case .slow:
+            view?.speed = 2
+        case .average:
+            view?.speed = 1
+        case .high:
+            view?.speed = 0.5
+        }
+        
         timer.start()
         timer.didUpdateTime = { [weak self] in
             self?.timeUpdated()
@@ -53,7 +66,10 @@ final class PresenterImpl {
     
     func viewDidDisappear() {
         timer.stop()
-        recordsRepository.addRecord(record: currentScore)
+        
+        if let person = settingsRepository.getPerson() {
+            recordsRepository.addRecord(name: person, score: currentScore)
+        }
     }
         
     func updateBackgroundPhase() {

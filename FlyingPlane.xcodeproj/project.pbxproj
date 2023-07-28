@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		80C602FE9F857E002FC4DB8B /* Pods_FlyingPlane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */; };
 		AB4432F02A43201100C42E54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */; };
+		AB8FA0932A72CF650086361E /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FA0922A72CF650086361E /* RecordModel.swift */; };
+		AB8FA0952A72D7DD0086361E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FA0942A72D7DD0086361E /* Person.swift */; };
 		AB98829B2A3E591500D9D889 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98829A2A3E591500D9D889 /* Phase.swift */; };
 		AB9D53B82A6C2A7F00A01F6E /* PresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */; };
 		AB9D53C22A70416400A01F6E /* RecordsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9D53C12A70416400A01F6E /* RecordsRepository.swift */; };
@@ -21,6 +23,7 @@
 		ABA3A9792A3B254000CA4BE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA3A9772A3B254000CA4BE1 /* LaunchScreen.storyboard */; };
 		ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03D92A543F8E003768D4 /* MainViewController.swift */; };
 		ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */; };
+		ABC8B0B92A744C5E001718A4 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8B0B82A744C5E001718A4 /* Records.swift */; };
 		ABCB8EEF2A5ABFD10069F56D /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */; };
 		ABDD0EFF2A6458D7002BB8D5 /* CaseIterable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */; };
 		ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD0F012A645951002BB8D5 /* PlanePhase.swift */; };
@@ -35,6 +38,8 @@
 		539733664D525D72C86EF5CD /* Pods_FlyingPlane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyingPlane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00B9FDC710818BD2DC54498 /* Pods-FlyingPlane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyingPlane.release.xcconfig"; path = "Target Support Files/Pods-FlyingPlane/Pods-FlyingPlane.release.xcconfig"; sourceTree = "<group>"; };
 		AB4432EF2A43201100C42E54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB8FA0922A72CF650086361E /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
+		AB8FA0942A72D7DD0086361E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		AB98829A2A3E591500D9D889 /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 		AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterImpl.swift; sourceTree = "<group>"; };
 		AB9D53C12A70416400A01F6E /* RecordsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsRepository.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		ABA3A97A2A3B254000CA4BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBA03D92A543F8E003768D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ABBA03DB2A5475A5003768D4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ABC8B0B82A744C5E001718A4 /* Records.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
 		ABDD0EFE2A6458D7002BB8D5 /* CaseIterable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+.swift"; sourceTree = "<group>"; };
 		ABDD0F012A645951002BB8D5 /* PlanePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanePhase.swift; sourceTree = "<group>"; };
@@ -80,6 +86,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB8FA0912A72CF0A0086361E /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AB9D53C32A7044B600A01F6E /* UserDefaults.swift */,
+				ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */,
+				AB9D53C12A70416400A01F6E /* RecordsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		AB9D53BD2A703C1100A01F6E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE57FF32A5C176C00245871 /* RecordTableViewCell.swift */,
+				AB8FA0922A72CF650086361E /* RecordModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -124,10 +141,8 @@
 			children = (
 				AB9D53BD2A703C1100A01F6E /* Screens */,
 				ABDD0F002A645910002BB8D5 /* Entities */,
-				ABCB8EEE2A5ABFD10069F56D /* SettingsRepository.swift */,
-				AB9D53C12A70416400A01F6E /* RecordsRepository.swift */,
+				AB8FA0912A72CF0A0086361E /* Repositories */,
 				AB9D53B72A6C2A7F00A01F6E /* PresenterImpl.swift */,
-				AB9D53C32A7044B600A01F6E /* UserDefaults.swift */,
 				ABE57FF52A5C17AD00245871 /* Helpers */,
 				ABA3A9802A3B268100CA4BE1 /* Supporting Files */,
 				AB9D53C52A706F1600A01F6E /* ScreenUpdateTimer.swift */,
@@ -154,6 +169,8 @@
 				ABDD0F012A645951002BB8D5 /* PlanePhase.swift */,
 				ABDD0F042A6459B8002BB8D5 /* Speed.swift */,
 				ABDD0F062A645A11002BB8D5 /* Plane.swift */,
+				AB8FA0942A72D7DD0086361E /* Person.swift */,
+				ABC8B0B82A744C5E001718A4 /* Records.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -312,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDD0F022A645951002BB8D5 /* PlanePhase.swift in Sources */,
+				AB8FA0932A72CF650086361E /* RecordModel.swift in Sources */,
 				ABCB8EEF2A5ABFD10069F56D /* SettingsRepository.swift in Sources */,
 				ABA3A9712A3B253F00CA4BE1 /* GameViewController.swift in Sources */,
 				ABE57FF42A5C176C00245871 /* RecordTableViewCell.swift in Sources */,
@@ -320,10 +338,12 @@
 				ABDD0F052A6459B8002BB8D5 /* Speed.swift in Sources */,
 				ABE57FF72A5C17CE00245871 /* Identifiable.swift in Sources */,
 				ABDD0F072A645A11002BB8D5 /* Plane.swift in Sources */,
+				AB8FA0952A72D7DD0086361E /* Person.swift in Sources */,
 				ABA3A96D2A3B253F00CA4BE1 /* AppDelegate.swift in Sources */,
 				ABA3A96F2A3B253F00CA4BE1 /* SceneDelegate.swift in Sources */,
 				AB98829B2A3E591500D9D889 /* Phase.swift in Sources */,
 				ABBA03DA2A543F8E003768D4 /* MainViewController.swift in Sources */,
+				ABC8B0B92A744C5E001718A4 /* Records.swift in Sources */,
 				AB9D53B82A6C2A7F00A01F6E /* PresenterImpl.swift in Sources */,
 				AB9D53C62A706F1600A01F6E /* ScreenUpdateTimer.swift in Sources */,
 				ABBA03DC2A5475A5003768D4 /* SettingsViewController.swift in Sources */,

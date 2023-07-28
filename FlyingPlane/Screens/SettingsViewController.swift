@@ -23,7 +23,7 @@ final class SettingsViewController: UIViewController {
     private let nameLabel = UILabel()
     private let planeSegmentControl = UISegmentedControl()
     private let speedSegmentControl = UISegmentedControl()
-    private let nameTextView = UITextField()
+    private let nameTextField = UITextField()
     private let imagePicker = UIImagePickerController()
     
     private let repository: SettingsRepository
@@ -46,6 +46,12 @@ final class SettingsViewController: UIViewController {
         configureViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureWithRepository()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -53,7 +59,7 @@ final class SettingsViewController: UIViewController {
     }
     
     private func addViews() {
-        [personImageView, planeLabel, planeSegmentControl, speedLabel, speedSegmentControl, nameLabel, nameTextView]
+        [personImageView, planeLabel, planeSegmentControl, speedLabel, speedSegmentControl, nameLabel, nameTextField]
             .forEach {
                 view.addSubview($0)
             }
@@ -72,10 +78,9 @@ final class SettingsViewController: UIViewController {
             $0.top.equalTo(personImageView.snp.bottom).offset(Metrics.verticalSpacing)
         }
         
-        nameTextView.snp.makeConstraints {
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(Metrics.horizontalSpacing)
+        nameTextField.snp.makeConstraints {
             $0.top.equalTo(personImageView.snp.bottom).offset(Metrics.verticalSpacing)
-            $0.trailing.equalToSuperview().inset(Metrics.horizontalSpacing)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalTo(nameLabel.snp.bottom)
             $0.height.equalTo(nameLabel.snp.height)
         }
@@ -86,9 +91,8 @@ final class SettingsViewController: UIViewController {
         }
         
         planeSegmentControl.snp.makeConstraints {
-            $0.leading.equalTo(planeLabel.snp.trailing).offset(Metrics.horizontalSpacing)
             $0.top.equalTo(planeLabel.snp.top)
-            $0.trailing.equalToSuperview().inset(Metrics.horizontalSpacing)
+            $0.centerX.equalToSuperview()
         }
         
         speedLabel.snp.makeConstraints {
@@ -97,10 +101,32 @@ final class SettingsViewController: UIViewController {
         }
         
         speedSegmentControl.snp.makeConstraints {
-            $0.leading.equalTo(speedLabel.snp.trailing).offset(Metrics.horizontalSpacing)
             $0.top.equalTo(speedLabel.snp.top)
-            $0.trailing.equalToSuperview().inset(Metrics.horizontalSpacing)
+            $0.centerX.equalToSuperview()
         }
+    }
+    
+    private func configureWithRepository() {
+        nameTextField.text = repository.getPerson()
+        
+        guard let plane = repository.getPlane() else {
+            return
+        }
+        
+        guard let planeIndex = Plane.allCases.firstIndex(of: plane) else {
+            return
+        }
+        
+        guard let speed = repository.getSpeed() else {
+            return
+        }
+        
+        guard let speedIndex = Speed.allCases.firstIndex(of: speed) else {
+            return
+        }
+        
+        planeSegmentControl.selectedSegmentIndex = planeIndex
+        speedSegmentControl.selectedSegmentIndex = speedIndex
     }
     
     private func configureViews() {
@@ -118,9 +144,9 @@ final class SettingsViewController: UIViewController {
         speedLabel.text = "Speed"
         nameLabel.text = "Name"
         
-        nameTextView.text = "John"
-        nameTextView.backgroundColor = .systemGray2
-        nameTextView.textAlignment = .center
+        nameTextField.delegate = self
+        nameTextField.placeholder = "Your name"
+        nameTextField.textAlignment = .center
                 
         for (index, item) in planeItems.enumerated() {
             planeSegmentControl.insertSegment(withTitle: item, at: index, animated: false)
@@ -222,5 +248,15 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
         if let image = info[.originalImage] as? UIImage {
             repository.saveImage(image: image)
         }
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = nameTextField.text {
+            repository.setPerson(text)
+        }
+        
+        return true
     }
 }
