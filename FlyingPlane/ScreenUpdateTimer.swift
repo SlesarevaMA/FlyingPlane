@@ -15,7 +15,6 @@ protocol ScreenUpdateTimer: AnyObject {
 }
 
 final class ScreenUpdateTimerImpl: ScreenUpdateTimer {
-    
     var didUpdateTime: (() -> Void)?
     
     private var displayLink: CADisplayLink?

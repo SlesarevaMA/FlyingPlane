@@ -16,7 +16,7 @@ private enum Metrics {
 }
 
 protocol Presenter {
-    
+    var view: GameViewController? { get }
 }
 
 final class PresenterImpl {
